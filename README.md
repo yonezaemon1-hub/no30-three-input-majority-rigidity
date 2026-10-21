@@ -2,7 +2,7 @@
 
 **English preprint v1.2, 20 October 2026** — Ryutaro Yonezu / Yonezu Research Lab.
 
-Status: **mathematical proof reviewed by an independent AI assistant; reported integrated v1.0 PASS and v1.1 differential PASS.** No human peer review. **Scholarly novelty INCONCLUSIVE; no priority claim.** Publication-ready as a transparent *unrefereed preprint*; this archive does not itself confirm public GitHub/Zenodo posting.
+Status: **mathematical proof reviewed by an independent AI assistant; reported integrated v1.0 PASS and v1.1 differential PASS.** No human peer review. **Scholarly novelty INCONCLUSIVE; no priority claim.** Published as a transparent *unrefereed preprint* on Zenodo: [version 1.2](https://doi.org/10.5281/zenodo.23524792).
 
 **Rights: All rights reserved.** (c) 2026 Ryutaro Yonezu. Source code supplied for verification; no general reuse license granted for manuscript or code.
 
