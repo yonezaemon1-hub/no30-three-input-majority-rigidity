@@ -1,0 +1,9 @@
+PASS n=5, all_states=32, lemma_states=15
+PASS n=7, all_states=128, lemma_states=63
+PASS n=9, all_states=512, lemma_states=255
+PASS n=11, all_states=2048, lemma_states=1023
+PASS n=13, all_states=8192, lemma_states=4095
+PASS n=15, all_states=32768, lemma_states=16383
+PASS n=17, all_states=131072, lemma_states=65535
+PASS n=5, no exact classification among rule words of length <=2
+REPORT audit_report.json

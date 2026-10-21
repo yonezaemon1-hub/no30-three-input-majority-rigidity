@@ -1,0 +1,5 @@
+verified m = 50
+verified m = 100
+verified m = 150
+verified m = 200
+PASS max_m 230 noncentral classes 348803 case counts {'two_run_d0': 12866, 'three_run_B': 219, 'three_run_A': 219, 'two_run_d1': 12647, 'two_run_E': 110, 'two_run_general': 322742} min d>=2 margin 0 seconds 1.316

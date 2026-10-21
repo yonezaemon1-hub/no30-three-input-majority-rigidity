@@ -1,0 +1,1 @@
+PASS: 384 explicit majority-margin counterexamples, m=12..200 plus m=201,250,501; 2 families; all intersection counts matched; direct A-B-A failed every time.

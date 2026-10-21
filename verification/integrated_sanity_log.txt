@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "scope": "Independent literal-window finite cross-check; not infinite-proof certification",
+  "central_full_states_n_5_to_13": 10912,
+  "noncentral_literal_three_round_witnesses": 587,
+  "noncentral_sample_sizes": {
+    "25": 15,
+    "27": 18,
+    "31": 23,
+    "45": 47,
+    "61": 84,
+    "101": 200,
+    "201": 200
+  },
+  "seed": 3002026
+}

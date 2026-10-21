@@ -1,0 +1,1 @@
+PASS: independent full A->B->A recheck of 3830 2-run certificates; complete class coverage for 39 odd lengths n=25..101.

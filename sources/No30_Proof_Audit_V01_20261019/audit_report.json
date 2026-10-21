@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "max_n": 17,
+  "results": [
+    {
+      "n": 5,
+      "all_states": 32,
+      "theorem_failures": 0,
+      "minority_lemma_states": 15,
+      "lemma_failures": 0
+    },
+    {
+      "n": 7,
+      "all_states": 128,
+      "theorem_failures": 0,
+      "minority_lemma_states": 63,
+      "lemma_failures": 0
+    },
+    {
+      "n": 9,
+      "all_states": 512,
+      "theorem_failures": 0,
+      "minority_lemma_states": 255,
+      "lemma_failures": 0
+    },
+    {
+      "n": 11,
+      "all_states": 2048,
+      "theorem_failures": 0,
+      "minority_lemma_states": 1023,
+      "lemma_failures": 0
+    },
+    {
+      "n": 13,
+      "all_states": 8192,
+      "theorem_failures": 0,
+      "minority_lemma_states": 4095,
+      "lemma_failures": 0
+    },
+    {
+      "n": 15,
+      "all_states": 32768,
+      "theorem_failures": 0,
+      "minority_lemma_states": 16383,
+      "lemma_failures": 0
+    },
+    {
+      "n": 17,
+      "all_states": 131072,
+      "theorem_failures": 0,
+      "minority_lemma_states": 65535,
+      "lemma_failures": 0
+    }
+  ],
+  "total_states_checked": 174752,
+  "total_minority_lemma_states": 87369,
+  "n5_counterexamples": {
+    "A": {
+      "input": "00011",
+      "output": "00110"
+    },
+    "B": {
+      "input": "00011",
+      "output": "00010"
+    },
+    "AA": {
+      "input": "00011",
+      "output": "01100"
+    },
+    "AB": {
+      "input": "00011",
+      "output": "00100"
+    },
+    "BA": {
+      "input": "00101",
+      "output": "00001"
+    },
+    "BB": {
+      "input": "00101",
+      "output": "01010"
+    }
+  },
+  "scope": "exhaustive finite checks; all-n proof is separate, novelty not established"
+}

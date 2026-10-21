@@ -1,0 +1,453 @@
+{
+  "status": "PASS",
+  "scope": "n=5..15 exhaustive all inputs/all offsets; n=5..101 consecutive-one witness all offsets",
+  "exhaustive": [
+    {
+      "n": 5,
+      "input_states": 32,
+      "offsets_tested": 3,
+      "passing_offsets": [
+        3
+      ],
+      "first_counterexample_by_failing_offset": {
+        "2": 3,
+        "4": 3
+      }
+    },
+    {
+      "n": 7,
+      "input_states": 128,
+      "offsets_tested": 5,
+      "passing_offsets": [
+        4
+      ],
+      "first_counterexample_by_failing_offset": {
+        "2": 7,
+        "3": 7,
+        "5": 7,
+        "6": 7
+      }
+    },
+    {
+      "n": 9,
+      "input_states": 512,
+      "offsets_tested": 7,
+      "passing_offsets": [
+        5
+      ],
+      "first_counterexample_by_failing_offset": {
+        "2": 15,
+        "3": 15,
+        "4": 15,
+        "6": 15,
+        "7": 15,
+        "8": 15
+      }
+    },
+    {
+      "n": 11,
+      "input_states": 2048,
+      "offsets_tested": 9,
+      "passing_offsets": [
+        6
+      ],
+      "first_counterexample_by_failing_offset": {
+        "2": 31,
+        "3": 31,
+        "4": 31,
+        "5": 31,
+        "7": 31,
+        "8": 31,
+        "9": 31,
+        "10": 31
+      }
+    },
+    {
+      "n": 13,
+      "input_states": 8192,
+      "offsets_tested": 11,
+      "passing_offsets": [
+        7
+      ],
+      "first_counterexample_by_failing_offset": {
+        "2": 63,
+        "3": 63,
+        "4": 63,
+        "5": 63,
+        "6": 63,
+        "8": 63,
+        "9": 63,
+        "10": 63,
+        "11": 63,
+        "12": 63
+      }
+    },
+    {
+      "n": 15,
+      "input_states": 32768,
+      "offsets_tested": 13,
+      "passing_offsets": [
+        8
+      ],
+      "first_counterexample_by_failing_offset": {
+        "2": 127,
+        "3": 127,
+        "4": 127,
+        "5": 127,
+        "6": 127,
+        "7": 127,
+        "9": 127,
+        "10": 127,
+        "11": 127,
+        "12": 127,
+        "13": 127,
+        "14": 127
+      }
+    }
+  ],
+  "witness": [
+    {
+      "n": 5,
+      "witness": 7,
+      "passing_offsets": [
+        3
+      ]
+    },
+    {
+      "n": 7,
+      "witness": 15,
+      "passing_offsets": [
+        4
+      ]
+    },
+    {
+      "n": 9,
+      "witness": 31,
+      "passing_offsets": [
+        5
+      ]
+    },
+    {
+      "n": 11,
+      "witness": 63,
+      "passing_offsets": [
+        6
+      ]
+    },
+    {
+      "n": 13,
+      "witness": 127,
+      "passing_offsets": [
+        7
+      ]
+    },
+    {
+      "n": 15,
+      "witness": 255,
+      "passing_offsets": [
+        8
+      ]
+    },
+    {
+      "n": 17,
+      "witness": 511,
+      "passing_offsets": [
+        9
+      ]
+    },
+    {
+      "n": 19,
+      "witness": 1023,
+      "passing_offsets": [
+        10
+      ]
+    },
+    {
+      "n": 21,
+      "witness": 2047,
+      "passing_offsets": [
+        11
+      ]
+    },
+    {
+      "n": 23,
+      "witness": 4095,
+      "passing_offsets": [
+        12
+      ]
+    },
+    {
+      "n": 25,
+      "witness": 8191,
+      "passing_offsets": [
+        13
+      ]
+    },
+    {
+      "n": 27,
+      "witness": 16383,
+      "passing_offsets": [
+        14
+      ]
+    },
+    {
+      "n": 29,
+      "witness": 32767,
+      "passing_offsets": [
+        15
+      ]
+    },
+    {
+      "n": 31,
+      "witness": 65535,
+      "passing_offsets": [
+        16
+      ]
+    },
+    {
+      "n": 33,
+      "witness": 131071,
+      "passing_offsets": [
+        17
+      ]
+    },
+    {
+      "n": 35,
+      "witness": 262143,
+      "passing_offsets": [
+        18
+      ]
+    },
+    {
+      "n": 37,
+      "witness": 524287,
+      "passing_offsets": [
+        19
+      ]
+    },
+    {
+      "n": 39,
+      "witness": 1048575,
+      "passing_offsets": [
+        20
+      ]
+    },
+    {
+      "n": 41,
+      "witness": 2097151,
+      "passing_offsets": [
+        21
+      ]
+    },
+    {
+      "n": 43,
+      "witness": 4194303,
+      "passing_offsets": [
+        22
+      ]
+    },
+    {
+      "n": 45,
+      "witness": 8388607,
+      "passing_offsets": [
+        23
+      ]
+    },
+    {
+      "n": 47,
+      "witness": 16777215,
+      "passing_offsets": [
+        24
+      ]
+    },
+    {
+      "n": 49,
+      "witness": 33554431,
+      "passing_offsets": [
+        25
+      ]
+    },
+    {
+      "n": 51,
+      "witness": 67108863,
+      "passing_offsets": [
+        26
+      ]
+    },
+    {
+      "n": 53,
+      "witness": 134217727,
+      "passing_offsets": [
+        27
+      ]
+    },
+    {
+      "n": 55,
+      "witness": 268435455,
+      "passing_offsets": [
+        28
+      ]
+    },
+    {
+      "n": 57,
+      "witness": 536870911,
+      "passing_offsets": [
+        29
+      ]
+    },
+    {
+      "n": 59,
+      "witness": 1073741823,
+      "passing_offsets": [
+        30
+      ]
+    },
+    {
+      "n": 61,
+      "witness": 2147483647,
+      "passing_offsets": [
+        31
+      ]
+    },
+    {
+      "n": 63,
+      "witness": 4294967295,
+      "passing_offsets": [
+        32
+      ]
+    },
+    {
+      "n": 65,
+      "witness": 8589934591,
+      "passing_offsets": [
+        33
+      ]
+    },
+    {
+      "n": 67,
+      "witness": 17179869183,
+      "passing_offsets": [
+        34
+      ]
+    },
+    {
+      "n": 69,
+      "witness": 34359738367,
+      "passing_offsets": [
+        35
+      ]
+    },
+    {
+      "n": 71,
+      "witness": 68719476735,
+      "passing_offsets": [
+        36
+      ]
+    },
+    {
+      "n": 73,
+      "witness": 137438953471,
+      "passing_offsets": [
+        37
+      ]
+    },
+    {
+      "n": 75,
+      "witness": 274877906943,
+      "passing_offsets": [
+        38
+      ]
+    },
+    {
+      "n": 77,
+      "witness": 549755813887,
+      "passing_offsets": [
+        39
+      ]
+    },
+    {
+      "n": 79,
+      "witness": 1099511627775,
+      "passing_offsets": [
+        40
+      ]
+    },
+    {
+      "n": 81,
+      "witness": 2199023255551,
+      "passing_offsets": [
+        41
+      ]
+    },
+    {
+      "n": 83,
+      "witness": 4398046511103,
+      "passing_offsets": [
+        42
+      ]
+    },
+    {
+      "n": 85,
+      "witness": 8796093022207,
+      "passing_offsets": [
+        43
+      ]
+    },
+    {
+      "n": 87,
+      "witness": 17592186044415,
+      "passing_offsets": [
+        44
+      ]
+    },
+    {
+      "n": 89,
+      "witness": 35184372088831,
+      "passing_offsets": [
+        45
+      ]
+    },
+    {
+      "n": 91,
+      "witness": 70368744177663,
+      "passing_offsets": [
+        46
+      ]
+    },
+    {
+      "n": 93,
+      "witness": 140737488355327,
+      "passing_offsets": [
+        47
+      ]
+    },
+    {
+      "n": 95,
+      "witness": 281474976710655,
+      "passing_offsets": [
+        48
+      ]
+    },
+    {
+      "n": 97,
+      "witness": 562949953421311,
+      "passing_offsets": [
+        49
+      ]
+    },
+    {
+      "n": 99,
+      "witness": 1125899906842623,
+      "passing_offsets": [
+        50
+      ]
+    },
+    {
+      "n": 101,
+      "witness": 2251799813685247,
+      "passing_offsets": [
+        51
+      ]
+    }
+  ]
+}

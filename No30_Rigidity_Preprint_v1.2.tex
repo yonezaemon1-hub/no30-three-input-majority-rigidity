@@ -1,0 +1,319 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,array,longtable,enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\setlength{\parskip}{0.26em}
+\setlength{\parindent}{0pt}
+\setlist{nosep,topsep=3pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Maj}{\operatorname{Maj}}
+\newcommand{\wt}[1]{\lvert #1\rvert}
+\newcommand{\cZ}{\mathbb Z}
+\newcommand{\ind}{\boldsymbol{1}}
+\newcommand{\pos}[1]{[#1]_{+}}
+\newcommand{\Runs}{\operatorname{runs}}
+\newcommand{\qedbox}{\hfill $\square$}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\footnotesize Yonezu Research Lab \textbar\ No. 30}\fancyhead[R]{\footnotesize Preprint v1.2 \textbar\ 20 Oct 2026}\fancyfoot[C]{\thepage}
+\title{\bfseries Rigidity of Three-Input Majority Compositions\\on Odd Cyclic Networks}
+\author{Ryutaro Yonezu\\\small Yonezu Research Lab\\\small \href{mailto:yonezaemon1+research@gmail.com}{yonezaemon1+research@gmail.com}}
+\date{20 October 2026 \quad\textit{Unrefereed preprint, version 1.2}}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $n=2m+1$ be odd and let $A$ apply the majority of $n-2$ consecutive cyclic inputs at every site. For $0<a<b<n$, let $B_{a,b}$ apply the majority of the three inputs at offsets $0,a,b$. We characterize exactly which three-input patterns make the synchronous three-stage composition $A\circ B_{a,b}\circ A$ equal the global strict majority consensus on every Boolean input. For every odd $n\ge25$, the identity holds if and only if the unordered cyclic gaps of the three taps are $(1,m,m)$. We also give a direct combinatorial proof that this gap pattern works for every odd $n\ge5$, a necessary gap bound valid for all odd lengths, and explicit one-, two-, and three-run counterexamples for every other gap pattern when $n\ge25$. The threshold $25$ is sharp: additional successful gap types exist at lengths $21$ and $23$. The result is a rigidity classification for a prescribed cyclic architecture, not a depth or fan-in improvement for unrestricted majority circuits. Mathematical proofs and finite verification evidence are included; priority and scholarly novelty remain unconfirmed.
+\end{abstract}
+\noindent\textbf{Keywords:} majority function; density classification; cyclic Boolean network; threshold circuits; rigidity; run decomposition.\\
+\textbf{Status and rights:} Unrefereed research preprint; independent AI proof audits of V0.1, V0.3, V0.4, V0.5 and integrated v1.0 were reported, and a differential AI review of v1.1 reported PASS. No human peer review is claimed. Scholarly novelty: inconclusive. \copyright\ 2026 Ryutaro Yonezu. All rights reserved.
+
+\section{Introduction and scope}
+Exact density classification asks a synchronous Boolean system to return the state initially held by the strict majority of sites. Sequential applications of elementary cellular-automaton rules can perform this task \cite{fuks1997}. General majority circuits can compute a global majority in two layers using gates of fan-in $n-2$ for every odd $n\ge7$ \cite{amanoYoshida2018}, or in three layers with asymptotically smaller fan-in \cite{kulikovPodolskii2017}. These results rule out claims that either a three-stage majority construction or near-global majority gates are intrinsically new.
+
+Our question is instead one of \emph{architecture-constrained rigidity}: fix a single translation-equivariant outer rule $A$ which omits two consecutive cyclic bits and insert a uniform three-input majority rule $B_{a,b}$ between two copies of $A$. For which tap configurations does this specific composition compute global majority for \emph{every} binary input? The answer depends only on the three cyclic gaps among the taps and, for $n\ge25$, admits one successful gap multiset.
+
+The outer layer has fan-in $n-2$ and therefore reaches almost the whole ring. We do \emph{not} claim constant-radius local cellular-automaton density classification, a lower bound for arbitrary majority circuits, a minimal gate count, or a new optimal circuit depth. Prior work also studies majority dynamics on cyclic words and networks \cite{moran1994,abilhoa2020,perrotRolland2026,balbiEtAl2026}, but those models do not by themselves establish the exact three-phase tap classification stated here. This comparison is limited to the references inspected; the absence of a located equivalent is not proof of publication priority.
+
+\section{Definitions and main statements}
+Fix odd $n=2m+1\ge5$, write $\cZ_n=\cZ/n\cZ$, and interpret all indices modulo $n$. For $x\in\{0,1\}^n$ write $\wt{x}=\sum_i x_i$ and $\overline{x}=\ind-x$. Because $n$ is odd, the strict majority bit $\Maj_n(x)$ is well-defined. Let $\ind$ denote the all-one word, and let $\Maj_k$ denote majority of an odd number $k$ of bits.
+
+Define translation-equivariant synchronous maps
+\begin{align}
+ A(x)_i &=\Maj_{n-2}\big(x_i,x_{i+1},\ldots,x_{i+n-3}\big),\label{eq:A}\\
+ B_{a,b}(x)_i &=\Maj_3\big(x_i,x_{i+a},x_{i+b}\big),\qquad 0<a<b<n.\label{eq:B}
+\end{align}
+The tap set $\{0,a,b\}$ has positive circular gaps
+\begin{equation}\label{eq:gaps}
+(p,q,r)=(a,b-a,n-b),\qquad p+q+r=n.
+\end{equation}
+When discussing gap classes, we reorder these as $p\le q\le r$. Translation and reflection of the three-tap set preserve the classification property (Lemma~\ref{lem:symmetry}). In particular, the \emph{unordered} triple of gaps is the relevant invariant.
+
+\begin{theorem}[Universal central construction]\label{thm:central}
+For every odd $n=2m+1\ge5$ and every $x\in\{0,1\}^n$,
+\begin{equation}\label{eq:central}
+ A\big(B_{1,m+1}(A(x))\big)=\Maj_n(x)\,\ind.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[Sharp three-tap rigidity]\label{thm:rigidity}
+For every odd $n=2m+1\ge25$ and every $0<a<b<n$, the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $A(B_{a,b}(A(x)))=\Maj_n(x)\,\ind$ for all $x\in\{0,1\}^n$;
+\item the unordered cyclic gaps of $\{0,a,b\}$ are $\{1,m,m\}$.
+\end{enumerate}
+\end{theorem}
+
+The lower threshold is sharp in this family: exhaustive checks establish the additional successful gap patterns $(3,9,9)$ for $n=21$ and $(3,10,10)$ for $n=23$, besides $(1,m,m)$. By the margin-one reduction it is sufficient to test respectively $\binom{21}{11}=352{,}716$ and $\binom{23}{12}=1{,}352{,}078$ majority-one inputs; the supplied independent finite checker does so. Thus one cannot replace $n\ge25$ with $n\ge23$ in Theorem~\ref{thm:rigidity}. These are finite boundary facts, not additional general structural theorems.
+
+\section{Reduction to three translated supports}
+Let $S$ shift cyclic indices forward: $(Sx)_i=x_{i+1}$; and let $(Rx)_i=x_{-i}$. Both $A$ and $B_{a,b}$ commute with shifts and with bit complementation.
+
+\begin{lemma}[Tap symmetry]\label{lem:symmetry}
+Success of $A\circ B_{a,b}\circ A$ depends only on the unordered circular gaps of $\{0,a,b\}$.
+\end{lemma}
+\begin{proof}
+Translating the tap set by $c$ replaces $B$ by $S^cB$; since $A$ commutes with $S$, the composite changes by $S^c$ at the output, irrelevant to a constant consensus word. Reflection sends the tap offsets to their negatives and satisfies $RAR=S^3A$, since the two omitted input sites change from $i-2,i-1$ to $i+1,i+2$. Therefore the reflected composite is a cyclic shift of the corresponding reflected-tap composite, again preserving consensus. Translation and reflection generate cyclic permutations and reversal of the gap triple; for three gaps this generates all their permutations.
+\end{proof}
+
+\begin{lemma}[Margin-one reduction]\label{lem:reduction}
+Suppose $\wt{x}=m+1$ and set $w_i=x_ix_{i+1}$ (Boolean multiplication), $U=\{i:w_i=1\}$. Then $A(x)=\overline{S^{-2}w}$ and the composition fails to output $\ind$ exactly when $\wt{B_{a,b}(w)}\ge m$. In particular, to refute a tap pattern it is enough to provide such a word $x$ of weight $m+1$.
+\end{lemma}
+\begin{proof}
+The $(n-2)$-input window for $A(x)_i$ excludes $x_{i-2},x_{i-1}$, so it has $m+1-x_{i-2}-x_{i-1}$ ones. Its majority is zero exactly if both excluded bits equal one, yielding $A(x)_i=1-x_{i-2}x_{i-1}$. Shifts and complements commute with both rules. Further,
+\begin{equation}\label{eq:outer-zero}
+ A(z)=\mathbf 0\quad\Longleftrightarrow\quad \wt{z}\le m-1.
+\end{equation}
+Indeed the forward implication follows by contraposition: at weight $m$, at least one adjacent pair of zeros can be omitted (an odd cycle with $m+1$ zeros must contain two adjacent zeros), leaving $m$ retained ones; if $\wt{z}=m+1$, choose a zero at the excluded position $i-2$, so at most one one is omitted and at least $m$ ones remain in that window; if $\wt{z}\ge m+2$, removing any two positions also leaves at least $m$ ones. Conversely, if $\wt{z}\le m-1$, every window sees too few ones. Applying this to $z=B_{a,b}(w)$ proves the claim.
+\end{proof}
+
+For $U\subseteq\cZ_n$, write $U-s=\{u-s\pmod n:u\in U\}$ and set
+\begin{equation}\label{eq:correlation}
+ f_U(s)=\wt{U\cap(U-s)},\qquad t_U(a,b)=\wt{U\cap(U-a)\cap(U-b)}.
+\end{equation}
+The three-input majority is one precisely when at least two of its inputs are one. Therefore
+\begin{equation}\label{eq:intersection}
+ \wt{B_{a,b}(w)}=f_U(a)+f_U(b)+f_U(b-a)-2t_U(a,b)
+ =f_U(p)+f_U(q)+f_U(r)-2t_U(a,b),
+\end{equation}
+using $f_U(n-s)=f_U(s)$. This exact pair/triple-intersection identity is the counting basis of the rigidity proof.
+
+\section{Proof that the central pattern works at every odd length}
+\begin{lemma}[Sparse-boundary contraction]\label{lem:boundary}
+Let $n=2m+1$ and $w\in\{0,1\}^n$ satisfy $1\le\wt{w}\le m$. Let $\rho(w)$ be the number of cyclic one-runs of $w$ in the ordinary index order. Define $B=B_{1,m+1}$. Then
+\begin{equation}\label{eq:contraction}
+\wt{B(w)}\le\wt{w}+\rho(w)-2.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Write $s=\wt{w}$ and $r_1=\rho(w)$. Of the adjacent pairs $(w_i,w_{i+1})$, exactly $s-r_1$ equal $(1,1)$ and $2r_1$ are change boundaries. On a $(1,1)$ pair the three-bit majority is one; on $(0,0)$ it is zero; on a boundary it equals $w_{i+m+1}$. Hence
+\begin{equation}\label{eq:q}
+\wt{B(w)}=s+r_1-q,\quad q=\#\{i:w_i\ne w_{i+1},\ w_{i+m+1}=0\}.
+\end{equation}
+Putting $j=i+m+1$ and noting $i\equiv j+m$ and $i+1\equiv j-m\pmod n$, we find
+\[
+q=\sum_{j:w_j=0}|w_{j+m}-w_{j-m}|.
+\]
+Because $\gcd(m,2m+1)=1$, the reordered word $v_t=w_{tm\bmod n}$ is a cyclic permutation of all sites, giving
+\begin{equation}\label{eq:L2}
+q=\sum_{t:v_t=0}|v_{t+1}-v_{t-1}|=2L_2(v),
+\end{equation}
+where $L_2(v)$ counts zero-runs of length at least two. Indeed each such run contributes one at each endpoint, while an isolated zero contributes zero. Since $w$, hence $v$, has at least $m+1$ zeros on a cycle of length $2m+1$, the zeros cannot all be isolated (the maximum independent-set size is $m$); thus $L_2(v)\ge1$. Combining (\ref{eq:q}) and (\ref{eq:L2}) proves (\ref{eq:contraction}).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:central}]
+Complement symmetry reduces to inputs with $\wt{x}\ge m+1$. If $\wt{x}\ge m+2$ then every $(n-2)$-input window contains at least $m$ ones, so $A(x)=\ind$ and the remaining layers preserve $\ind$. Otherwise $\wt{x}=m+1$. Let $R$ be the number of cyclic one-runs of $x$, and define $w_i=x_ix_{i+1}$. Every one-run of length $\ell$ contributes $\ell-1$ consecutive ones to $w$; hence
+\[
+\wt{w}=m+1-R,\qquad \rho(w)\le R.
+\]
+Because $x$ has $m$ zeros, any two distinct one-runs must be separated by at least one zero, so $R\le m$ and hence $\wt{w}=m+1-R\ge1$. By Lemma~\ref{lem:boundary},
+\[
+\wt{B(w)}\le(m+1-R)+R-2=m-1.
+\]
+Lemma~\ref{lem:reduction} now yields $A(B(A(x)))=\ind$. Apply bit complementation to obtain the zero-majority case.
+\end{proof}
+
+\section{A universal forbidden-gap condition}
+\begin{lemma}[Gap obstruction]\label{lem:gap}
+If $A\circ B_{a,b}\circ A$ classifies all inputs on an odd cycle $n=2m+1$, then each of the circular gaps of the tap set is at most $m$.
+\end{lemma}
+\begin{proof}
+Take $x=1^{m+1}0^m$, so its pair-product support $U$ is an arc of $m$ consecutive sites. Its three shifted copies are arcs with starts separated by gaps $p,q,r$. An elementary interval count in (\ref{eq:intersection}) gives
+\[
+\wt{B_{a,b}(w)}=\begin{cases}m-1,&\max(p,q,r)\le m,\\m,&\max(p,q,r)\ge m+1.\end{cases}
+\]
+For completeness: if every gap is at most $m$, the three pair intersections have lengths $m-p,m-q,m-r$, totaling $3m-n=m-1$, and the triple intersection is empty. If, say, $r\ge m+1$ (the sole such gap), the pair intersections have lengths $m-p,m-q,r-m-1$, while the triple intersection has length $r-m-1$, so (\ref{eq:intersection}) equals $m$. Lemma~\ref{lem:reduction} supplies a failing input in the latter case.
+\end{proof}
+\begin{corollary}\label{cor:adjacent}
+For any odd $n\ge5$, among tap sets with two adjacent sites, the only successful unordered gaps are $(1,m,m)$.
+\end{corollary}
+\begin{proof}
+If $p=1$, the other two positive gaps sum to $2m$ and by Lemma~\ref{lem:gap} are both at most $m$; thus they both equal $m$. Theorem~\ref{thm:central} gives sufficiency, and Lemma~\ref{lem:symmetry} covers all equivalent placements.
+\end{proof}
+
+\section{Proof of the rigidity classification for $n\ge25$}
+By Lemma~\ref{lem:symmetry}, sort the gaps $p\le q\le r$. Lemma~\ref{lem:gap} eliminates $r\ge m+1$. Hence suppose $r\le m$ and set $d=m-r$. From $p+q+r=2m+1$ and $p\le q\le r$, we obtain
+\begin{equation}\label{eq:range}
+ p+q=m+d+1,\qquad 2d+1\le p\le q\le m-d.
+\end{equation}
+We build a counterexample of weight $m+1$ for every noncentral gap class. Throughout, $m\ge12$.
+
+\subsection{Case I: $d\ge2$, or $r\le m-2$}
+Choose the explicit two-run input
+\begin{equation}\label{eq:caseI-x}
+ x=1^{d+4}0^3 1^{m-d-3}0^{m-3}.
+\end{equation}
+The constraints (\ref{eq:range}) imply $m\ge3d+1$, so each displayed run has positive length. The pair-product support is
+\begin{equation}\label{eq:caseI-U}
+ U=[0,d+2]\cup[d+7,m+2],
+\end{equation}
+using inclusive integer intervals before reduction modulo $n$. This support lies inside an arc of $m+3$ sites. A translated triple of tap sites could lie within that arc only if a complementary cyclic gap were at least $n-(m+2)=m-1$, contradicting $r\le m-2$. Consequently $t_U(p,p+q)=0$.
+
+For every shift $2d+1\le s\le m-d$, overlap of the two intervals in (\ref{eq:caseI-U}) yields the exact formula
+\begin{equation}\label{eq:fcaseI}
+ f_U(s)=\pos{m-d-4-s}+\min(d+3,s-4).
+\end{equation}
+The first summand is the long-interval self-overlap; the second counts the short-to-long overlap. The short interval has no self-overlap because $s\ge2d+1>d+2$, and a wraparound overlap is excluded by $s\le m-d$.
+
+Put $\alpha=m-d-4$, $\beta=d+3$, and $\gamma=d+7$. For $s\ge\gamma$, the formula simplifies to $f_U(s)=\beta+\pos{\alpha-s}$.
+
+\textbf{Case I-a ($d\ge6$).} We have $p\ge2d+1\ge\gamma$, and likewise $q,r\ge\gamma$. By the elementary inequality $\pos{u}+\pos{v}\ge\pos{u+v}$,
+\begin{align*}
+\wt{B(w)}&\ge3\beta+\pos{\alpha-p}+\pos{\alpha-q}\\
+ &\ge3d+9+\pos{m-3d-9}\ge m.
+\end{align*}
+\textbf{Case I-b ($2\le d\le5$, $m\ge2d+11$).} Here $q,r\ge\gamma$, and $\alpha\ge\gamma$. If $p\ge\gamma$, the preceding estimate applies. If $p<\gamma$, formula (\ref{eq:fcaseI}) gives $f_U(p)=\alpha-4$ and $f_U(q),f_U(r)\ge\beta$, so
+\[
+\wt{B(w)}\ge\alpha-4+2\beta=m+d-2\ge m.
+\]
+\textbf{Case I-c (the remaining finite boundary).} Necessarily $2\le d\le5$ and $\max(12,3d+1)\le m\le2d+10$. For each admissible row substitute $r=m-d$, $q=m+d+1-p$ and the integer range $2d+1\le p\le\lfloor(m+d+1)/2\rfloor$ into (\ref{eq:fcaseI}). The values in Table~\ref{tab:boundary} are the minimum of $f_U(p)+f_U(q)+f_U(r)-m$; all are nonnegative. This is a finite verification of \emph{explicit arithmetic identities}, not a finite surrogate for the preceding unbounded argument.
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{7pt}
+\begin{tabular}{cccc|cccc}
+\toprule
+$d$ & $m$ & min margin & \hspace{6mm} & $d$ & $m$ & min margin & \\\midrule
+2&12&0&&3&12&1&\\
+2&13&0&&3&13&2&\\
+2&14&0&&3&14&1&\\
+3&15&1&&3&16&1&\\
+4&13&2&&4&14&3&\\
+4&15&4&&4&16&3&\\
+4&17&2&&4&18&2&\\
+5&16&5&&5&17&6&\\
+5&18&5&&5&19&4&\\
+5&20&3&&--&--&--&\\
+\bottomrule
+\end{tabular}
+\caption{All 19 boundary cases of Case I-c; every minimum is taken over the admissible integer $p$ in Eq.~(\ref{eq:range}).}\label{tab:boundary}
+\end{table}
+Thus Case I provides a failing input for all $d\ge2$.
+
+\subsection{Case II: $d=1$, or $r=m-1$}
+Here $p+q=m+2$ and $3\le p\le q$.
+
+If $p=3$, the gap triple is $(3,m-1,m-1)$. The three-run counterexample
+\begin{equation}\label{eq:caseII-A}
+ x=1^3 0^2 1^4 0^5 1^{m-6}0^{m-7}
+\end{equation}
+has pair-product support $U=[0,1]\cup[5,7]\cup[14,m+6]$. For offsets $a=3$, $b=m+2$, the three pair intersections have sizes $m-10,5+h,5+h$ and the triple intersection size $h=\min(2,\max(0,m-13))$. Equation~(\ref{eq:intersection}) therefore gives $\wt{B(w)}=m$ for every $m\ge12$.
+
+There is an additional equal-small-gaps subcase when $m=2k$ and $p=q=k+1$. Choose
+\begin{equation}\label{eq:caseII-E}
+ x=1^k 0^1 1^{k+1}0^{2k-1}.
+\end{equation}
+Then $U=[0,k-2]\cup[k+1,2k]$. For offsets $a=k+1$, $b=2k+2$, the three pair intersections have sizes $(k-1,2,k-1)$ and the triple intersection is empty. Hence $\wt{B(w)}=2k=m$.
+
+For every other $p\ge4$, choose
+\begin{equation}\label{eq:generic}
+ x=1^\ell 0^3 1^{m+1-\ell}0^{m-3},\quad U=[0,\ell-2]\cup[\ell+3,m+2],
+\end{equation}
+with $\ell=\max(5,p-2)$. The intersection counts are
+\begin{equation}\label{eq:caseII-tab}
+\begin{array}{c|cccc}
+\text{condition}&f_U(p)&f_U(q)&f_U(r)&t\\\hline
+p=4,5,6&m-9&4&5&0\\
+p\ge7&m-p-2&p-3&5&0
+\end{array}
+\end{equation}
+where the special equal-gap subcase has already been removed. Here is an unbounded derivation of the table, rather than an appeal to finite checking. The two-run correlation formula (\ref{eq:generic-f}) in Appendix~\ref{app:intervals} splits each overlap into short--short, long--long, short-to-long, and wrapped long-to-short parts. If $4\le p\le6$, put $\ell=5$: for $s=p$, the nonzero parts are $m-p-5$ and $p-4$, giving $f_U(p)=m-9$; for $s=q=m+2-p$ only the short-to-long contribution $4$ survives; for $s=r=m-1$ these contributions are respectively $4$ and $1$, giving $5$. If $p\ge7$, put $\ell=p-2$: at $s=p$ the long--long and short-to-long terms are $m-2p+2$ and $p-4$, giving $m-p-2$; at $s=q$ the short-to-long term is $p-3$; and at $s=r$ the direct and wrapped terms are $4$ and $1$. All bounds follow from $4\le p\le q$, $p+q=m+2$, $m\ge12$, and exclusion of the equal-small-gaps case.
+
+To compute $t$, orient the taps as $(0,p,m+2)$. Because $U\subseteq[0,m+2]$, an unwrapped triple must start at $i=0$; then $i+p=p$ lies in the zero gap $[\ell-1,\ell+2]$. A wrapped triple would have to start at $i\in\{m-1,m,m+1,m+2\}$, to send $i+m+2$ back into the short interval, but in every such case $i+p>m+2$ and $i+p<n$, so the middle tap is outside $U$. Therefore $t=0$ for the entire parameter region, with no bound on $m$ other than $m\ge12$. Every row gives $\wt{B(w)}=m$; Case II fails.
+
+\subsection{Case III: $d=0$, or $r=m$}
+Here $p+q=m+1$ and $1\le p\le q$. If $p=1$, the gaps are $(1,m,m)$, which succeed by Theorem~\ref{thm:central}.
+
+If $p=\lceil m/2\rceil$, we use a three-run counterexample. For even $m=2k$, $k\ge6$, choose offsets $(a,b)=(k,2k+1)$ and
+\begin{equation}\label{eq:B-even}
+ x=1^3 0^1 1^{k-1}0^{k+2}1^{k-1}0^{k-3}.
+\end{equation}
+Its support $U=[0,1]\cup[4,k+1]\cup[2k+5,3k+2]$ has pair intersection counts $(4,2k-5,3)$ and triple intersection size $1$, giving $\wt{B(w)}=m$. For odd $m=2k+1$, $k\ge6$, choose $(a,b)=(k+1,2k+2)$ and
+\begin{equation}\label{eq:B-odd}
+ x=1^3 0^1 1^k0^1 1^{k-1}0^{2k-1}.
+\end{equation}
+Now $U=[0,1]\cup[4,k+2]\cup[k+5,2k+2]$, with pair intersections $(k,3,k)$ and triple intersection size $1$. Again $\wt{B(w)}=m$.
+
+For every remaining $p\ge2$, use (\ref{eq:generic}) with $\ell=\max(4,p-1)$. Since the special $p=\lceil m/2\rceil$ case was removed, $p<\lceil m/2\rceil$. Direct interval intersections yield
+\begin{equation}\label{eq:caseIII-tab}
+\begin{array}{c|ccccc}
+\text{condition}&f_U(p)&f_U(q)&f_U(r)&t&\wt{B(w)}\\\hline
+p=2&m-5&4&5&2&m\\
+p=3&m-7&3&5&0&m+1\\
+p=4&m-8&3&5&0&m\\
+p\ge5&m-p-3&p-2&5&0&m
+\end{array}
+\end{equation}
+Again every row follows symbolically from the four overlap terms of (\ref{eq:generic-f}). When $p=2,3,4$ we have $\ell=4$, with short length $3$ and long length $m-4$. For $s=p$, the short--short term is $1$ only if $p=2$, while the long--long term is $m-4-p$; hence $f_U(p)=m-5,m-7,m-8$, respectively. At $q=m+1-p$, the direct short-to-long term is always $3$, and a wrapped long-to-short term adds $1$ only for $p=2$; at $r=m$, the direct and wrapped terms are $3+2=5$. For $p\ge5$ we have $\ell=p-1$ and $p<\lceil m/2\rceil$. The long--long and short-to-long terms of $f_U(p)$ are $m-2p+1$ and $p-4$, totaling $m-p-3$; the sole nonzero contribution to $f_U(q)$ is $p-2$; and $f_U(m)=3+2=5$.
+
+For the three-way count choose offsets $(a,b)=(p,m+1)$. Unwrapped alignments can start only at $i=0,1$, because $U\subseteq[0,m+2]$. For $p\ge3$, both $i+p$ belong to the deleted gap $[\ell-1,\ell+2]$, so neither contributes. In a wrapped alignment, $i\in\{m,m+1,m+2\}$; the middle tap $i+p$ lies beyond $m+2$ but below $n$, hence is outside $U$. Thus $t=0$ for all $p\ge3$. If $p=2$ instead, exactly $i=0$ (unwrapped) and $i=m$ (wrapped) qualify, giving $t=2$. These inequalities hold for every admissible $m\ge12$; the table is not inferred from a finite parameter scan. All displayed weights are at least $m$, so Case III fails outside the central class.
+
+\begin{proof}[Proof of Theorem~\ref{thm:rigidity}]
+By Lemma~\ref{lem:gap}, any successful triple has largest gap $r\le m$. Case I rules out all $r\le m-2$, Case II all $r=m-1$, and Case III all $r=m$ except $(1,m,m)$. Each exclusion is witnessed by an input of weight $m+1$ with $\wt{B(w)}\ge m$, which is a true counterexample by Lemma~\ref{lem:reduction}. The remaining central gap type works by Theorem~\ref{thm:central} and tap symmetry (Lemma~\ref{lem:symmetry}).
+\end{proof}
+
+\appendix
+\section{Interval-count reproducibility}\label{app:intervals}
+Every intersection in the proof is a sum of intersections of inclusive intervals in $\cZ_n$. Before cyclic reduction, for integer intervals $I=[u,v]$ and $J=[u',v']$ use
+\begin{equation}\label{eq:intcount}
+\wt{I\cap J}=\max\big(0,\min(v,v')-\max(u,u')+1\big).
+\end{equation}
+When an interval shifted by $s$ crosses the endpoint $n-1$, split it into nonwrapping pieces. All supports used above have at most three components. To make the two-run subcases self-contained, for $x$ in (\ref{eq:generic}) write $I=[0,\ell-2]$ and $J=[\ell+3,m+2]$; then $U=I\sqcup J$, where the cyclic zero gaps have lengths $4$ and $m-2$. For every integer $1\le s\le m$, define
+\begin{align}
+ C_{IJ}(s)&=\pos{\min(\ell-2,m+2-s)-\max(0,\ell+3-s)+1},\\
+ C_{JI}^{\mathrm{wrap}}(s)&=\pos{\min(\ell-2,s-m+1)-\max(0,\ell+s-2m+2)+1}.
+\end{align}
+The first term counts pairs at distance $s$ from the short run to the long run without wrapping; the second counts long-to-short pairs that wrap once. The self-pairs are $\pos{\ell-1-s}$ and $\pos{m-\ell-s}$. There are no other possibilities at shifts $1\le s\le m$, because both runs are shorter than $m+1$. Consequently the exact identity
+\begin{equation}\label{eq:generic-f}
+ f_U(s)=\pos{\ell-1-s}+\pos{m-\ell-s}+C_{IJ}(s)+C_{JI}^{\mathrm{wrap}}(s)
+\end{equation}
+holds for \emph{every} admissible $m,\ell,s$, without any finite verification hypothesis. Inserting $\ell=5$ or $p-2$ and shifts $(p,m+2-p,m-1)$ gives Table~(\ref{eq:caseII-tab}); inserting $\ell=4$ or $p-1$ and shifts $(p,m+1-p,m)$ gives Table~(\ref{eq:caseIII-tab}). The triple intersections are derived by the allowed starting positions in the corresponding case proofs.
+
+For three-run supports, summing (\ref{eq:intcount}) over all component pairs, with translated copies split at the cyclic boundary, gives each $f_U(s)$. Likewise $t_U(a,b)$ is the sum of three-way inclusive interval intersections
+\[\pos{\min(v_1,v_2-a+kn,v_3-b+hn)-\max(u_1,u_2-a+kn,u_3-b+hn)+1}\]
+over component intervals $[u_j,v_j]$ of $U$ and cyclic lifts $k,h\in\{-1,0,1\}$. The shifted components are disjoint modulo $n$, so every common site is counted once. This is a finite algebraic identity in the endpoints, valid for arbitrary symbolic $m$. The script \texttt{check\_intersections.py} supplies supplementary finite checks, not a replacement for these identities.
+
+\section{Reproducibility and claim boundaries}\label{app:repro}
+The accompanying archive contains the successive original source bundles V0.1--V0.5, a consolidated verification driver, and SHA-256 manifests. The original \texttt{verify\_v05.py} constructs a failing witness for every noncentral gap class for $12\le m\le230$, totaling $348{,}803$ classes in the recorded run, and checks the Case-I overlap formula. The original \texttt{check\_intersections.py} verifies $176{,}079$ interval identities. Older packages include direct exhaustive checks of the central construction (through $n=17$), sampled or complete finite gap classifications, and explicit three-run witnesses. These computations \emph{support} but do not replace the unbounded proofs.
+
+Independent AI proof audits were reported for V0.1, V0.3, V0.4, and V0.5. A separate AI reviewer reported PASS for integrated v1.0, and its subsequent differential review of v1.1 reported PROOF PASS and BIBLIOGRAPHY PASS; see the audit summary in the accompanying archive. The present v1.2 makes editorial and status clarifications only, with no change to the mathematical statements or proofs. No independent human peer review is asserted. Bibliographic priority is not certified. Publisher-level bibliographic metadata was checked for the IEICE 2018, Moran 1994, and Fuk\'s 1997 references, but the full texts of the IEICE 2018 and Moran 1994 works were not available for complete equivalence inspection in the prior-art audit. All source code is supplied for reproducibility; redistribution rights to this manuscript are not granted beyond applicable law.
+
+\section*{Acknowledgment and authorship disclosure}
+This research was developed by Ryutaro Yonezu with substantial assistance from multiple generative AI systems in conjecture formation, combinatorial derivations, computational experimentation, text drafting, and cross-checking. The author is responsible for the claims as publicly presented. AI outputs are not represented as independent human peer review.
+
+\begin{thebibliography}{10}\footnotesize
+\bibitem{fuks1997} H.~Fuk\'s, ``Solution of the density classification problem with two cellular automata rules,'' \emph{Physical Review E} \textbf{55} (1997), R2081. \href{https://doi.org/10.1103/PhysRevE.55.R2081}{doi:10.1103/PhysRevE.55.R2081}.
+\bibitem{kulikovPodolskii2017} A.~S.~Kulikov and V.~V.~Podolskii, ``Computing Majority by Constant Depth Majority Circuits with Low Fan-in Gates,'' \emph{STACS 2017}, LIPIcs 66, Article 49. \href{https://doi.org/10.4230/LIPIcs.STACS.2017.49}{doi:10.4230/LIPIcs.STACS.2017.49}.
+\bibitem{amanoYoshida2018} K.~Amano and M.~Yoshida, ``Depth Two ($n-2$)-Majority Circuits for $n$-Majority,'' \emph{IEICE Trans. Fundamentals} E101-A (2018), 1543--1545. \href{https://doi.org/10.1587/transfun.E101.A.1543}{doi:10.1587/transfun.E101.A.1543}.
+\bibitem{amano2018} K.~Amano, ``Depth Two Majority Circuits for Majority and List Expanders,'' \emph{MFCS 2018}, LIPIcs 117, Article 81. \href{https://doi.org/10.4230/LIPIcs.MFCS.2018.81}{doi:10.4230/LIPIcs.MFCS.2018.81}.
+\bibitem{engels2020} C.~Engels, M.~Garg, K.~Makino, and A.~Rao, ``On Expressing Majority as a Majority of Majorities,'' \emph{SIAM J. Discrete Math.} \textbf{34} (2020), 730--741. \href{https://doi.org/10.1137/18M1223599}{doi:10.1137/18M1223599}.
+\bibitem{moran1994} G.~Moran, ``The $r$-majority vote action on 0--1 sequences,'' \emph{Discrete Mathematics} \textbf{132} (1994), 145--174. \href{https://doi.org/10.1016/0012-365X(94)90236-4}{doi:10.1016/0012-365X(94)90236-4}.
+\bibitem{abilhoa2020} W.~Abilhoa and P.~P.~B.~de Oliveira, ``Density Classification Based on Agents Under Majority Rule: Connectivity Influence on Performance,'' in \emph{Distributed Computing and Artificial Intelligence, 16th Int'l Conf. (DCAI 2019)} (Springer, 2020), 163--170. \href{https://doi.org/10.1007/978-3-030-23887-2_19}{doi:10.1007/978-3-030-23887-2\_19}.
+\bibitem{perrotRolland2026} K.~Perrot and M.~Rolland, ``Majority Boolean networks classifying density: structural characterization and complexity,'' arXiv:2602.13511 (2026). \url{https://arxiv.org/abs/2602.13511}.
+\bibitem{balbiEtAl2026} P.~P.~Balbi, K.~Perrot, M.~Rolland, and E.~Ruivo, ``Non-trivial automata networks do exist that solve the global majority problem with the local majority rule,'' arXiv:2603.19472 (2026). \url{https://arxiv.org/abs/2603.19472}.
+\bibitem{lecomte2022} V.~Lecomte, P.~Ramakrishnan, and L.-Y.~Tan, ``The Composition Complexity of Majority,'' \emph{CCC 2022}, LIPIcs 234, Article 19. \href{https://doi.org/10.4230/LIPIcs.CCC.2022.19}{doi:10.4230/LIPIcs.CCC.2022.19}.
+\end{thebibliography}
+\end{document}

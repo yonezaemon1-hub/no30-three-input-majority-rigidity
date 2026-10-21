@@ -1,0 +1,20 @@
+PASS: 17,442 distinct full-three-round counterexamples, 19 sizes, max one-run count 4
+  n=25 rejected_noncentral= 273
+  n=27 rejected_noncentral= 322
+  n=29 rejected_noncentral= 375
+  n=31 rejected_noncentral= 432
+  n=33 rejected_noncentral= 493
+  n=35 rejected_noncentral= 558
+  n=37 rejected_noncentral= 627
+  n=39 rejected_noncentral= 700
+  n=41 rejected_noncentral= 777
+  n=43 rejected_noncentral= 858
+  n=45 rejected_noncentral= 943
+  n=47 rejected_noncentral=1032
+  n=49 rejected_noncentral=1125
+  n=51 rejected_noncentral=1222
+  n=53 rejected_noncentral=1323
+  n=55 rejected_noncentral=1428
+  n=57 rejected_noncentral=1537
+  n=59 rejected_noncentral=1650
+  n=61 rejected_noncentral=1767

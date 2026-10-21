@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "exact_margin_one_input_total": 1704794,
+  "results": [
+    {
+      "n": 21,
+      "gap_type": [
+        3,
+        9,
+        9
+      ],
+      "margin_one_inputs": 352716,
+      "max_B_ones": 9,
+      "status": "PASS"
+    },
+    {
+      "n": 23,
+      "gap_type": [
+        3,
+        10,
+        10
+      ],
+      "margin_one_inputs": 1352078,
+      "max_B_ones": 10,
+      "status": "PASS"
+    }
+  ],
+  "interpretation": "For n=21 and 23, gap (3,m-1,m-1) succeeds on all inputs by margin-one reduction; n=25 is the first odd length where the rigidity theorem can hold."
+}

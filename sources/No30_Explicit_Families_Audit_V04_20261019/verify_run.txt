@@ -1,0 +1,42 @@
+PASS: 384 explicit majority-margin counterexamples, m=12..200 plus m=201,250,501; 2 families; all intersection counts matched; direct A-B-A failed every time.
+n=25 classes=16 survivors=3
+n=27 classes=19 survivors=3
+n=29 classes=21 survivors=3
+n=31 classes=24 survivors=3
+n=33 classes=27 survivors=3
+n=35 classes=30 survivors=3
+n=37 classes=33 survivors=3
+n=39 classes=37 survivors=3
+n=41 classes=40 survivors=3
+n=43 classes=44 survivors=3
+n=45 classes=48 survivors=3
+n=47 classes=52 survivors=3
+n=49 classes=56 survivors=3
+n=51 classes=61 survivors=3
+n=53 classes=65 survivors=3
+n=55 classes=70 survivors=3
+n=57 classes=75 survivors=3
+n=59 classes=80 survivors=3
+n=61 classes=85 survivors=3
+n=63 classes=91 survivors=3
+n=65 classes=96 survivors=3
+n=67 classes=102 survivors=3
+n=69 classes=108 survivors=3
+n=71 classes=114 survivors=3
+n=73 classes=120 survivors=3
+n=75 classes=127 survivors=3
+n=77 classes=133 survivors=3
+n=79 classes=140 survivors=3
+n=81 classes=147 survivors=3
+n=83 classes=154 survivors=3
+n=85 classes=161 survivors=3
+n=87 classes=169 survivors=3
+n=89 classes=176 survivors=3
+n=91 classes=184 survivors=3
+n=93 classes=192 survivors=3
+n=95 classes=200 survivors=3
+n=97 classes=208 survivors=3
+n=99 classes=217 survivors=3
+n=101 classes=225 survivors=3
+PASS: 39 odd sizes n=25..101: exactly three classes survive 1-/2-run witnesses; these include the central class and the two explicit 3-run families.
+PASS: independent full A->B->A recheck of 3830 2-run certificates; complete class coverage for 39 odd lengths n=25..101.
