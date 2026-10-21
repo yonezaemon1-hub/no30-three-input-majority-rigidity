@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite the No.30 unrefereed preprint. No DOI assigned as of 2026-10-21."
+type: article
+title: "Rigidity of Three-Input Majority Compositions on Odd Cyclic Networks"
+authors:
+  - family-names: "Yonezu"
+    given-names: "Ryutaro"
+date-released: 2026-10-21
+version: "1.2"
+url: "https://github.com/yonezaemon1-hub/no30-three-input-majority-rigidity"
+keywords:
+  - majority function
+  - density classification
+  - cyclic Boolean networks
+  - threshold circuits
+  - rigidity
+  - run decomposition
+abstract: "An unrefereed preprint giving an architecture-constrained classification of exact majority consensus for three-stage synchronous compositions on odd cyclic Boolean networks. Human peer review and novelty are not established."
